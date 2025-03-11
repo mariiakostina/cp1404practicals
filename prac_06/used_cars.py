@@ -21,5 +21,5 @@ def main():
     print(f"Car has fuel: {my_car.fuel}")
     print(my_car)
 
-
-main()
+if __name__ == "__main__":
+    main()
