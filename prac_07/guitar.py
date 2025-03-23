@@ -16,6 +16,10 @@ class Guitar:
         """Return True if the guitar is 50 or more years"""
         return self.get_age() >= VINTAGE_AGE
 
+    def __lt__(self, other):
+        """Compare Guitars by year."""
+        return self.year < other.year
+
     def __str__(self):
         """Return a formatted string representation of the guitar."""
         return f"{self.name} ({self.year}) : ${self.cost:,.2f}"
