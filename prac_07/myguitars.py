@@ -29,7 +29,7 @@ def main():
         display_guitars(guitars)
 
 
-    choice_add_guitar = input("\nDo you want to add new guitars? (y/n): ").strip().lower()
+    choice_add_guitar = input("Do you want to add new guitars? (y/n): ").strip().lower()
     if choice_add_guitar == "y":
         add_new_guitars(guitars)
 
@@ -46,15 +46,15 @@ def display_guitars(guitars):
 
 def add_new_guitars(guitars):
     """Add new guitars to the list"""
-    name = input("Enter new guitar: ").strip()
+    num_guitars = int(input("How many guitars do you want to add? "))
 
-    while name:
+    for i in range(num_guitars):
+        name = input("Name: ").strip()
         year = int(input("Year: "))
         cost = float(input("Cost: $"))
         new_guitar = Guitar(name, year, cost)
         guitars.append(new_guitar)
         print(f"{new_guitar} added!")
-        name = input("Name: ").strip()
 
 def store_guitars(guitars):
     """Save current list of guitars to a text file"""
