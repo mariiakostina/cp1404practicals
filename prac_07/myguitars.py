@@ -19,10 +19,11 @@ def main():
 
     in_file.close()
 
-    display_guitars(guitars)
     print("Sort guitars by year: ")
     guitars.sort()
-
+    display_guitars(guitars)
+    add_new_guitars(guitars)
+    store_guitars(guitars)
 
 def display_guitars(guitars):
     """Display all guitars in the list"""
@@ -44,4 +45,16 @@ def add_new_guitars(guitars):
         guitars.append(new_guitar)
         print(f"{new_guitar} added!")
         name = input("Name: ").strip()
+
+def store_guitars(guitars):
+    """Save current list of guitars to a text file"""
+    in_file = open("guitars.csv", "w", newline="")
+    for guitar in guitars:
+        in_file.write(f"{guitar.name},{guitar.year},{guitar.cost}\n")
+
+    in_file.close()
+    print("\nGuitars saved to 'guitars.csv'!")
+
+if __name__ == "__main__":
+    main()
 
