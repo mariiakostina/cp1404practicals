@@ -1,12 +1,14 @@
 """
-Estimated time: 40 min 20:00
-Actual time:
+Estimated time: 40 min
+Actual time: 1 hour
 """
 
 import datetime
 
+
 class Project:
     """Represent project object"""
+
     def __init__(self, name, start_date, priority, cost, completion):
         """Initialize a Project instance."""
         self.name = name
@@ -19,24 +21,6 @@ class Project:
         """Return a string representation of the project."""
         return (f"{self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, "
                 f"priority: {self.priority}, estimate: ${self.cost:,.2f}, completion: {self.completion}%")
-
-    def update_completion(self, new_completion):
-        """Update the project's completion percentage."""
-        try:
-            new_value = int(new_completion)
-            if 0 <= new_value <= 100:
-                self.completion = new_value
-        except ValueError:
-            print("Invalid input")
-
-    def update_priority(self, new_priority):
-        """Update the project's priority."""
-        try:
-            new_value = int(new_priority)
-            if new_value > 0:
-                self.priority = new_value
-        except ValueError:
-            print("Invalid input")
 
     def __lt__(self, other):
         """Compare projects by priority for sorting."""
