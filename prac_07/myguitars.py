@@ -20,6 +20,9 @@ def main():
     in_file.close()
 
     display_guitars(guitars)
+    print("Sort guitars by year: ")
+    guitars.sort()
+
 
 def display_guitars(guitars):
     """Display all guitars in the list"""
@@ -30,4 +33,15 @@ def display_guitars(guitars):
         for guitar in guitars:
             print(guitar)
 
+def add_new_guitars(guitars):
+    """Add new guitars to the list"""
+    name = input("Enter new guitar: ").strip()
+
+    while name:
+        year = int(input("Year: "))
+        cost = float(input("Cost: $"))
+        new_guitar = Guitar(name, year, cost)
+        guitars.append(new_guitar)
+        print(f"{new_guitar} added!")
+        name = input("Name: ").strip()
 
