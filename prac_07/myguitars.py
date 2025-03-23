@@ -21,5 +21,13 @@ def main():
 
     display_guitars(guitars)
 
+def display_guitars(guitars):
+    """Display all guitars in the list"""
+    if not guitars:
+        print("Guitars not found")
+    else:
+        print("Guitars:")
+        for guitar in guitars:
+            print(guitar)
 
 
