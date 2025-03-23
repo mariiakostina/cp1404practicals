@@ -5,6 +5,7 @@ Actual time:
 
 import csv
 from datetime import datetime
+from operator import itemgetter
 from prac_07.project import Project
 
 FILENAME = "projects.txt"
@@ -19,8 +20,20 @@ def main():
    option = input("\n- (L)oad projects \n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n- (U)pdate project\n- (Q)uit").upper()
 
    while option != "Q":
-       if option == "L"
-
+       if option == "L":
+           filename = input("Enter filename: ")
+           projects = load_projects(filename)
+       elif option == "S":
+           filename = input("Enter filename to save to: ")
+           save_projects(filename, projects)
+       elif option == "D":
+           display_projects(projects)
+       elif option == "F":
+           filter_projects_date(projects)
+       elif option == "A":
+           add_project(projects)
+       elif option == "U":
+           update_project(projects)
 
 def load_projects(filename):
     """Load projects from a text file."""
@@ -33,3 +46,21 @@ def load_projects(filename):
                 record[4])
             projects.append([name, start_date, priority, cost, completion])
     return projects
+
+def display_projects(projects):
+    """Display the list of projects"""
+    projects.sort(key=itemgetter(2, 0))
+    completed_projects = [project for project in projects if project[4] == 100]
+    incomplete_projects = [project for project in projects if project[4] < 100]
+
+    print("Incomplete projects:")
+    for project in incomplete_projects:
+        print(f"* {project[0]} - Start: {project[1]}, Priority: {project[2]}, Estimate: ${project[3]:,.2f}, Completion: {project[4]}%")
+
+    print("Completed projects:")
+    for project in completed_projects:
+        print(f"  {project[0]} - Start: {project[1]}, Priority: {project[2]}, Estimate: ${project[3]:,.2f}, Completion: {project[4]}%")
+
+    print(f"{len(completed_projects)} projects completed, {len(incomplete_projects)} projects still in progress.")
+
+
