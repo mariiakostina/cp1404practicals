@@ -4,7 +4,7 @@ Actual time:
 """
 
 import csv
-from datetime import datetime
+import datetime
 from operator import itemgetter
 from prac_07.project import Project
 
@@ -65,6 +65,23 @@ def display_projects(projects):
 
 def filter_projects_date(projects):
     """Filter projects that start after a given date."""
+    filter_date = get_valid_date("Show projects that start after date (dd/mm/yyyy): ")
+    print(f"That day is/was {filter_date.strftime('%A')}")
+    print(filter_date.strftime("%d/%m/%Y"))
+    print("Filtered projects:")
+    for project in projects:
+        project_date = datetime.datetime.strptime(project[1], "%d/%m/%Y").date()
+        print(
+            f"  {project[0]}, start: {project[1]}, priority: {project[2]}, estimate: ${project[3]:,.2f}, completion: {project[4]}%")
+
+def get_valid_date(prompt):
+    """Ensure input is a valid date format"""
+    try:
+        date_string = input(prompt).strip()
+        return datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    except ValueError:
+        print("Invalid date format. Use dd/mm/yyyy.")
+
 
 def add_project(projects):
     """Add new project"""
@@ -80,4 +97,5 @@ def save_projects(filename, projects):
 
 if __name__ == "__main__":
     main()
+
 
