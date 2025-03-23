@@ -63,4 +63,21 @@ def display_projects(projects):
 
     print(f"{len(completed_projects)} projects completed, {len(incomplete_projects)} projects still in progress.")
 
+def filter_projects_date(projects):
+    """Filter projects that start after a given date."""
+
+def add_project(projects):
+    """Add new project"""
+    print("Let's add a new project!")
+
+def update_project(projects):
+
+def save_projects(filename, projects):
+    """Save the project list to a text file."""
+    with open(filename, "w") as out_file:
+        for project in projects:
+            print(",".join([str(item) for item in project]), file=out_file)
+
+if __name__ == "__main__":
+    main()
 
